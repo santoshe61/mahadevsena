@@ -9,11 +9,11 @@
             required
             v-model="data.Mobile"
             class="col"
-            label="Member Mobile Number *"
+            label="कार्यकर्ता (Activist) Mobile Number *"
             lazy-rules
             :rules="[$v.required, $v.mobile]"
             maxlength="10"
-			:hint="`Name: ${member.Name}, Balance: ${member.Balance}`"
+            :hint="`Name: ${member.Name}, Balance: ${member.Balance}`"
             :error="!!member.error"
             :error-message="member.error"
           >
@@ -24,7 +24,7 @@
           <q-input
             outlined
             required
-			no-error-icon
+            no-error-icon
             class="col"
             v-model.number="data.Request_Amount"
             label="Request Amount *"
@@ -45,7 +45,7 @@
             lazy-rules
             :rules="[$v.required, $v.text(30, 500, /(?:)/)]"
             maxlength="500"
-			counter
+            counter
           />
         </div>
       </q-card-section>
@@ -104,16 +104,16 @@
     if (!data.value.Mobile) {
       noty("danger", "Member's Mobile Number cannot be blank");
       return false;
-    }else if (data.value.Request_Amount > member.value.Balance) {
+    } else if (data.value.Request_Amount > member.value.Balance) {
       noty("danger", "Request amount cannot be more then Member's balance");
       return false;
     } else if (member.value.error) {
       noty("danger", member.value.error);
       return false;
     }
-	payoutStore.addPayout(data.value).then(function () {
-	  data.value = { dummyData };
-	});
+    payoutStore.addPayout(data.value).then(function () {
+      data.value = { dummyData };
+    });
   }
 
   function onReset() {

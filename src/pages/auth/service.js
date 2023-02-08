@@ -6,5 +6,5 @@ export function login(body) {
 		.then(data => {
 			auth(data.body);
 		})
-		.catch(data => console.log(data));
+		// .catch(data => console.log(data));
 }

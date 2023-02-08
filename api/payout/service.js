@@ -24,7 +24,7 @@ function getPayoutList(req, res, next) {
 			SELECT :filter, COUNT(*), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL FROM Payouts WHERE Status > -2 ${filter};
 		`;
 	}
-	console.log(sql);
+	// console.log(sql);
 	query(sql, { filter: `%${req.query.filter}%` })
 		.then(function (rows) {
 			let metaData = rows.pop();
@@ -51,7 +51,7 @@ function processPayout(req, res, next) {
 function addPayout(req, res, next) {
 	query("INSERT INTO Payouts (Mobile, Request_Amount, Request_Details) VALUES (:Mobile, :Request_Amount, :Request_Details)", req.body)
 		.then(function (rows) {
-			res.json(rows, { status: "success", message: `Payout for ${req.body.Mobile} added succesfully` }, 200);
+			res.json(rows, { status: "success", message: `Payout for ${req.body.Mobile} added succesfully`, redirect: "/" }, 200);
 		}).catch(function (err) {
 			res.json(null, { status: "danger", message: err.message }, 404);
 		});

@@ -20,7 +20,7 @@ const routes = [
     children: [{ path: "", component: () => import("pages/IndexPage.vue") }],
   },
   {
-    path: "/",
+    path: "/app",
     component: () => import("layouts/MainLayout.vue"),
     beforeEnter(to, from, next) {
       let authUser = auth();
@@ -34,7 +34,8 @@ const routes = [
     },
     children: [
       {
-        path: "",
+        path: "/app",
+        alias: "dashboard",
         meta: {
           title: "Home",
           caption: "Home",
@@ -46,8 +47,8 @@ const routes = [
       {
         path: "/user/add/:mobile?",
         meta: {
-          title: "Add Members",
-          caption: "Add new members",
+          title: "Add Activist",
+          caption: "नया कार्यकर्ता जोड़ें",
           isAdmin: true,
           icon: "person_add",
         },
@@ -56,8 +57,8 @@ const routes = [
       {
         path: "/user/view",
         meta: {
-          title: "View Members",
-          caption: "View list of members",
+          title: "View Activists List",
+          caption: "कार्यकर्ता सूची देखें",
           isAdmin: true,
           icon: "people_alt",
         },
@@ -67,8 +68,8 @@ const routes = [
       {
         path: "/transaction/view",
         meta: {
-          title: "View Transactions",
-          caption: "View list transactions",
+          title: "View Points Transactions",
+          caption: "अंक लेनदेन देखें",
           isAdmin: true,
           icon: "format_list_numbered",
         },
@@ -78,7 +79,7 @@ const routes = [
         path: "/payouts/add",
         meta: {
           title: "Add Payout request",
-          caption: "Add new payout request",
+          caption: "पेआउट अनुरोध जोड़ें",
           isAdmin: true,
           icon: "playlist_add",
         },
@@ -88,7 +89,7 @@ const routes = [
         path: "/payouts/request/view",
         meta: {
           title: "View Payout Requests",
-          caption: "Requests for payout",
+          caption: "पेआउट अनुरोध देखें",
           isAdmin: true,
           icon: "playlist_play",
         },
@@ -97,8 +98,8 @@ const routes = [
       {
         path: "/payouts/paid/view",
         meta: {
-          title: "View Payouts",
-          caption: "View paid payouts",
+          title: "View released Payouts",
+          caption: "जारी किए गए पेआउट देखें",
           isAdmin: true,
           icon: "playlist_add_check",
         },
@@ -138,6 +139,11 @@ const routes = [
         ]
       },
     ],
+  },
+  {
+    path: "/",
+    component: () => import("layouts/BlankLayout.vue"),
+    children: [{ path: "", component: () => import("pages/Home.vue") }],
   },
 
   // Always leave this as last one,

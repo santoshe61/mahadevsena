@@ -3,8 +3,9 @@ const mysql = require('mysql2');
 // const mysql = require('mysql2/promise');
 const connection = mysql.createConnection({
 	host: 'localhost',
-	user: 'root',
-	database: 'bhartiyavirasat'
+	user: 'bestwebs_mahadevsena',
+	password: "4FyGn[t-jU;D",
+	database: 'bestwebs_mahadevsena'
 });
 
 connection.config.namedPlaceholders = true;

@@ -6,9 +6,9 @@
         style="max-width: 440px"
       >
         <h6>Your Profile</h6>
-        <q-markup-table  flat bordered dense>
+        <q-markup-table flat bordered dense>
           <tbody>
-            <tr v-for="(value, key) in profileStore.profile">
+            <tr v-for="(value, key) in profileStore.authUser">
               <td>{{ key.replaceAll("_", " ") }}</td>
               <td v-if="key == 'Time'">
                 {{ new Date(value).toLocaleString() }}
@@ -32,55 +32,54 @@
         >
       </q-card-actions>
     </q-card>
-	<q-dialog v-model="prompt" persistent>
-		<form @submit.prevent.stop="onSubmit" @reset="onReset">
-			<q-card style="min-width: 350px">
-			  <q-card-section>
-				<div class="text-h6">Change Password</div>
-			  </q-card-section>
+    <q-dialog v-model="prompt" persistent>
+      <div>
+        <form @submit.prevent.stop="onSubmit" @reset="onReset">
+          <q-card style="min-width: 350px">
+            <q-card-section class="row item-center">
+              <div class="text-h6">Change Password</div>
+              <q-space />
+              <q-btn icon="close" flat round dense v-close-popup />
+            </q-card-section>
 
-			  <q-card-section class="q-pt-none">
-				<div class="column q-gutter-md">
-				  <div class="col">
-					<q-input
-					  label="Current Password *"
-					  outlined
-					  no-error-icon
-					  v-model.trim="data.OPassword"
-					  :rules="[$v.required, $v.text(6, 128)]"
-					/>
-				  </div>
-				  <div class="col">
-					<q-input
-					  label="New Password *"
-					  outlined
-					  no-error-icon
-					  v-model.trim="data.Password"
-					  :rules="[$v.required, $v.text(6, 128)]"
-					/>
-				  </div>
-				</div>
-			  </q-card-section>
-			  <q-separator />
+            <q-card-section class="q-pt-none">
+              <div class="column q-gutter-md">
+                <div class="col">
+                  <q-input
+                    label="Current Password *"
+                    outlined
+                    no-error-icon
+                    v-model.trim="data.OPassword"
+                    :rules="[$v.required, $v.text(6, 128)]"
+                  />
+                </div>
+                <div class="col">
+                  <q-input
+                    label="New Password *"
+                    outlined
+                    no-error-icon
+                    v-model.trim="data.Password"
+                    :rules="[$v.required, $v.text(6, 128)]"
+                  />
+                </div>
+              </div>
+            </q-card-section>
+            <q-separator />
 
-			  <q-card-actions class="text-primary">
-				<q-btn flat color="negative" label="Reset" v-close-popup />
-				<q-space></q-space>
-				<q-btn
-				  outline
-				  color="positive"
-				  label="Change"
-				  type="submit"
-				/>
-			  </q-card-actions>
-			</q-card>
-		</form>
-	</q-dialog>
+            <q-card-actions class="text-primary">
+              <q-btn flat color="negative" label="Reset" type="reset" />
+              <q-space></q-space>
+              <q-btn outline color="positive" label="Change" type="submit" />
+            </q-card-actions>
+          </q-card>
+        </form>
+      </div>
+    </q-dialog>
   </div>
 </template>
 
 <script setup>
-  import { ref, watch, onMounted } from "vue";
+  import { ref } from "vue";
   import { validations as $v, noty } from "bestwebs";
   import useProfileStore from "./profile";
 
@@ -101,8 +100,8 @@
       return false;
     }
     profileStore.updatePassword(data.value).then(function () {
-		data.value = {};
-		prompt.value = false;
+      data.value = {};
+      prompt.value = false;
     });
   }
 

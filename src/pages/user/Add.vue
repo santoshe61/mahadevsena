@@ -2,17 +2,14 @@
   <q-form @submit.prevent.stop="onSubmit" @reset="onReset" class="q-pa-md">
     <q-card class="my-card">
       <q-card-section>
-        <h6 v-if="editMember">
-          Edit Member <i>{{ editMember }}</i>
-        </h6>
-        <h6 v-else>Add Member</h6>
-        <div class="row q-my-xs q-gutter-lg">
+        <TitleBar />
+        <div class="row q-my-xs q-col-gutter-lg">
           <q-input
             outlined
             required
             v-model="data.Referer"
-            class="col"
-            label="Referer Mobile Number *"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
+            label="परिचयकर्ता (Referer) Mobile Number *"
             label-color="warning"
             color="warning"
             lazy-rules
@@ -31,8 +28,8 @@
             :disable="!!editMember"
             required
             v-model="data.Mobile"
-            class="col"
-            label="Member Mobile Number *"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
+            label="कार्यकर्ता (Activist) Mobile Number *"
             label-color="warning"
             color="warning"
             lazy-rules
@@ -46,13 +43,13 @@
             </template>
           </q-input>
         </div>
-        <div class="row q-my-xs q-gutter-lg">
+        <div class="row q-my-xs q-col-gutter-lg">
           <q-input
             outlined
             required
-            class="col"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
             v-model="data.Name"
-            label="Member Name *"
+            label="कार्यकर्ता (Activist) Name *"
             label-color="warning"
             color="warning"
             lazy-rules
@@ -61,7 +58,7 @@
           />
           <q-input
             outlined
-            class="col"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
             v-model="data.Password"
             label="Password *"
             label-color="warning"
@@ -71,10 +68,10 @@
             maxlength="128"
           />
         </div>
-        <div class="row q-my-xs q-gutter-lg">
+        <div class="row q-my-xs q-col-gutter-lg">
           <q-input
             outlined
-            class="col"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
             v-model="data.Account_IFSC"
             label="Bank Account IFSC"
             lazy-rules
@@ -83,7 +80,7 @@
           />
           <q-input
             outlined
-            class="col"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
             v-model="data.Account_Number"
             label="Bank Account Number"
             lazy-rules
@@ -92,7 +89,7 @@
           />
           <q-input
             outlined
-            class="col"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
             v-model="data.Account_Name"
             label="Bank Account Name"
             lazy-rules
@@ -101,7 +98,7 @@
           />
           <q-input
             outlined
-            class="col"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
             v-model="data.Account_UPI"
             label="Bank Account UPI ID"
             lazy-rules
@@ -109,10 +106,10 @@
             maxlength="100"
           />
         </div>
-        <div class="row q-my-xs q-gutter-lg">
+        <div class="row q-my-xs q-col-gutter-lg">
           <q-input
             outlined
-            class="col"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
             v-model="data.Email"
             label="Email"
             lazy-rules
@@ -125,7 +122,7 @@
           </q-input>
           <q-input
             outlined
-            class="col"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
             v-model="data.PAN"
             label="PAN Number"
             lazy-rules
@@ -134,7 +131,7 @@
           />
           <q-input
             outlined
-            class="col"
+            class="col-12 col-xs-6 col-md-4 col-sm-6"
             v-model="data.AADHAR"
             label="AADHAR Number"
             lazy-rules
@@ -159,7 +156,8 @@
   import { ref, watch, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
   import { validations as $v, noty, random } from "bestwebs";
-  import useUserStore from "./user";
+import useUserStore from "./user";
+  import TitleBar from "@/layouts/TitleBar.vue";
 
   const route = useRoute();
   const router = useRouter();
@@ -255,7 +253,7 @@
         router.push("/user/add");
       });
     } else {
-      console.log(data.value);
+      // console.log(data.value);
       userStore.addUser(data.value).then(function () {
         data.value = { dummyData };
       });

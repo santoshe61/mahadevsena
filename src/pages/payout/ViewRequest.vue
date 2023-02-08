@@ -230,7 +230,7 @@
   }
 
   function proceedToPay(request) {
-    console.log(request);
+    // console.log(request);
     prompt.value = true;
     promptRequest.value = request;
     promptRequest.value.Paid_Amount = request.Request_Amount;
@@ -259,7 +259,7 @@
       return Object.values(output).join(",");
     });
     content.unshift(Object.keys(payoutStore.payouts[0]).join(",").replaceAll("_", " "));
-    console.log(content);
+    // console.log(content);
     const status = exportFile("activity.csv", content.join("\r\n"), "text/csv");
     if (status !== true) {
       noty("danger", "Browser denied file download...");

@@ -3,8 +3,9 @@ const service = require('./service.js');
 const router = express.Router();
 
 router
-	.route('/:mobile')
-	// .get(service.getUserList)
-	.patch(service.updateProfile);
+	.get('/', service.getDashboard)
+	.patch('/', service.updateProfile)
+	.patch('/changepass', service.updatePassword)
+	.patch('/payout-request', service.requestPayout);;
 
 module.exports = router;

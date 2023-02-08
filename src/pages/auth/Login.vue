@@ -12,36 +12,41 @@
           </q-card-section>
           <q-card-section>
             <div class="text-center q-pt-lg">
-              <div class="col text-h6 ellipsis">Log in</div>
+              <div class="col text-h6 ellipsis">Mahadev Sena ( महादेव सेना )</div>
             </div>
           </q-card-section>
           <q-card-section>
-            <q-form class="q-gutter-md" @submit="submit">
+            <q-form class="q-gutter-md" @submit="onSubmit">
               <q-input
                 filled
-                v-model="form.Mobile"
+                v-model="data.Mobile"
                 label="Username"
                 lazy-rules
+                :rules="[$v.required, $v.mobile]"
+                maxlength="10"
               />
 
               <q-input
                 type="password"
                 filled
-                v-model="form.Pass"
+                v-model="data.Pass"
                 label="Password"
                 lazy-rules
+                :rules="[$v.required, $v.text(4, 128)]"
+                maxlength="128"
               />
 
               <div class="flex row">
-                <q-btn label="Login" type="submit" color="primary" />
-                <q-space />
                 <q-btn
-                  label="Register"
+                  label="Click here to Register"
+                  no-caps
                   to="/register"
                   type="button"
                   color="red"
                   flat
                 />
+                <q-space />
+                <q-btn label="Login" type="submit" color="primary" />
               </div>
             </q-form>
           </q-card-section>
@@ -53,16 +58,16 @@
 
 <script setup>
   import { ref } from "vue";
-  import { login } from "./service.js";
+  import { validations as $v } from "bestwebs";
+  import useAuthStore from "./auth";
 
-let form = ref({
-  Mobile: 9718181389,
-    Pass: "Sonuu1"
-  });
-  function submit(e) {
-    login(form.value).then(function (data) {
+  const authStore = useAuthStore();
 
-    });
+  let data = ref({});
+  function onSubmit(e) {
+    if (e.isTrusted) {
+      authStore.login(data.value);
+    }
   }
 </script>
 

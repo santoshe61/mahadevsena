@@ -1,16 +1,21 @@
-export default {
-	name: "Bhartiya Virasat",
-	company: "Bhartiya Virasat Foundation",
-	url: "bhartiyavirasat.in",
-	email: "info@bhartiyavirasat.in",
-	mobile: "9898989898",
+let config = {
+	name: "Mahadev Sena",
+	company: "Mahadev Sena",
+	url: "www.mahadevsena.in",
+	email: "info@mahadevsena.in",
+	mobile: "",
 	address: "Paschim Vihar, Delhi",
-	api: "http://localhost:5000/api",
 	comission: {
 		l1: 30,
-		l1: 25,
-		l1: 20,
-		l1: 15,
-		l1: 10,
+		l2: 25,
+		l3: 20,
+		l4: 15,
+		l5: 10,
 	}
- }
+}
+if (window.location.hostname.includes("mahadevsena.org")) {
+	config.api = "/api";
+} else {
+	config.api = "http://localhost:5000/api";
+}
+export default config;

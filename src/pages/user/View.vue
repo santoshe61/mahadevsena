@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <q-table
-      title="View Members"
+      :title="`${$route.meta.title} ( ${$route.meta.caption} )`"
       :rows="userStore.users"
       :columns="columns"
       :visible-columns="visibleColumns"
