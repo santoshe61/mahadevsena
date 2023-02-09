@@ -71,7 +71,7 @@
         <div>
           <iframe
             name="fa051854d17ac"
-            width="500px"
+            width="100%"
             height="600px"
             data-height="600px"
             data-testid="fb:page Facebook Social Plugin"
@@ -81,11 +81,11 @@
             allowfullscreen="true"
             scrolling="yes"
             allow="encrypted-media"
-            src="https://www.facebook.com/v16.0/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df3d605af1d73ffc%26domain%3Dlocalhost%26is_canvas%3Dfalse%26origin%3Dhttp%253A%252F%252Flocalhost%253A9000%252Ff1d0deffc45298c%26relation%3Dparent.parent&amp;container_width=500&amp;container_height=1000&amp;hide_cover=true&amp;href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089010184187&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=true&amp;tabs=timeline&amp;width=500"
+            src="https://www.facebook.com/v16.0/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df3d605af1d73ffc%26domain%3Dlocalhost%26is_canvas%3Dfalse%26origin%3Dhttp%253A%252F%252Flocalhost%253A9000%252Ff1d0deffc45298c%26relation%3Dparent.parent&amp;hide_cover=true&amp;href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089010184187&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=true&amp;tabs=timeline&amp;"
             style="
               border: none;
               visibility: visible;
-              width: 500px;
+              width: 100%;
               height: 600px;
               margin-top: 30px;
             "
