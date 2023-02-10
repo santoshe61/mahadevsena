@@ -6,15 +6,15 @@ function getUserList(req, res, next) {
 	let sql;
 	if (req.query.filter) {
 		sql = `
-			(SELECT Mobile, Referer, Name, Email, Account_IFSC, Account_Number, Account_Name, Account_UPI, PAN, AADHAR, Balance, Time, Password, Status FROM users WHERE isAdmin < 1 AND (Mobile LIKE :filter OR Referer LIKE :filter OR Name LIKE :filter) ORDER BY Time DESC LIMIT ${start}, ${pagelength})
+			(SELECT Mobile, Referer, Name, Email, Account_IFSC, Account_Number, Account_Name, Account_UPI, PAN, AADHAR, Balance, Time, Password, Status FROM Users WHERE isAdmin < 1 AND (Mobile LIKE :filter OR Referer LIKE :filter OR Name LIKE :filter) ORDER BY Time DESC LIMIT ${start}, ${pagelength})
 			UNION ALL
-			SELECT COUNT(*), SUM(Balance), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL FROM users WHERE isAdmin < 1 AND (Mobile LIKE :filter OR Referer LIKE :filter OR Name LIKE :filter);
+			SELECT COUNT(*), SUM(Balance), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL FROM Users WHERE isAdmin < 1 AND (Mobile LIKE :filter OR Referer LIKE :filter OR Name LIKE :filter);
 		`;
 	} else {
 		sql = `
-			(SELECT Mobile, Referer, Name, Email, Account_IFSC, Account_Number, Account_Name, Account_UPI, PAN, AADHAR, Balance, Time, Password, Status FROM users WHERE isAdmin < 1 LIMIT ${start}, ${pagelength})
+			(SELECT Mobile, Referer, Name, Email, Account_IFSC, Account_Number, Account_Name, Account_UPI, PAN, AADHAR, Balance, Time, Password, Status FROM Users WHERE isAdmin < 1 LIMIT ${start}, ${pagelength})
 			UNION ALL
-			SELECT COUNT(*), SUM(Balance), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, :filter FROM users WHERE isAdmin < 1;
+			SELECT COUNT(*), SUM(Balance), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, :filter FROM Users WHERE isAdmin < 1;
 		`;
 	}
 	query(sql, { filter: `%${req.query.filter}%` })
@@ -28,7 +28,7 @@ function getUserList(req, res, next) {
 }
 
 function getUser(req, res, next) {
-	query("SELECT Mobile, Referer, Name, Email, Account_IFSC, Account_Number, Account_Name, Account_UPI, PAN, AADHAR, Balance, Time, Password, Status  FROM users WHERE Mobile = ?", [req.params.mobile])
+	query("SELECT Mobile, Referer, Name, Email, Account_IFSC, Account_Number, Account_Name, Account_UPI, PAN, AADHAR, Balance, Time, Password, Status  FROM Users WHERE Mobile = ?", [req.params.mobile])
 		.then(function (rows) {
 			res.json(rows);
 		})
@@ -38,7 +38,7 @@ function getUser(req, res, next) {
 }
 
 function deleteUser(req, res, next) {
-	query("DELETE FROM users WHERE Mobile = ?", [req.params.mobile])
+	query("DELETE FROM Users WHERE Mobile = ?", [req.params.mobile])
 		.then(function (rows) {
 			res.json(rows);
 		})
@@ -56,7 +56,7 @@ function updateUser(req, res, next) {
 		else delete items[key];
 	});
 	items.Mobile = req.params.mobile;
-	query(`UPDATE users SET ${qs.join(", ")} WHERE Mobile = :Mobile`, items)
+	query(`UPDATE Users SET ${qs.join(", ")} WHERE Mobile = :Mobile`, items)
 		.then(function (rows) {
 			res.json(rows, { status: "success", message: `Member ${req.params.mobile} succesfully updated` });
 		})
@@ -75,7 +75,7 @@ function addUser(req, res, next) {
 }
 
 function updateUserStatus(req, res, next) {
-	query("UPDATE users SET status = status * -1  WHERE Mobile = ?", [req.params.mobile])
+	query("UPDATE Users SET status = status * -1  WHERE Mobile = ?", [req.params.mobile])
 		.then(function (rows) {
 			res.json(rows);
 		})

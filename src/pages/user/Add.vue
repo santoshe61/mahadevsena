@@ -164,14 +164,11 @@ import useUserStore from "./user";
   const userStore = useUserStore();
   let rand = random(1, 9);
   let dummyData = {
-    Name: `Sant ${random(1, 9)}`,
-    Mobile: 9 + `${random(1, 9)}`.repeat(5)+ `${random(1, 9)}`.repeat(4),
-    Password: `Sonuu1`,
-    Referer: [
-      9718181389, 8376050406, 9718181388, 9718181387, 9718181386, 9718181385,
-      9718181384, 9718181386, 9718181385, 9718181384,
-    ][random(1, 9)],
-    Email: null,
+    Name: "",
+    Mobile: "",
+    Password: "",
+    Referer: "",
+    Email: "",
     Account_IFSC: null,
     Account_Number: null,
     Account_Name: null,

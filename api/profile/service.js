@@ -19,7 +19,7 @@ function updateProfile(req, res, next) {
 		else delete items[key];
 	});
 	items.Mobile = req.authUser;
-	query(`UPDATE users SET ${qs.join(", ")} WHERE Mobile = :Mobile`, items)
+	query(`UPDATE Users SET ${qs.join(", ")} WHERE Mobile = :Mobile`, items)
 		.then(function (rows) {
 			res.json(true, { status: "success", message: `Profile succesfully updated` });
 		})
@@ -32,7 +32,7 @@ function updatePassword(req, res, next) {
 	query(`SELECT Password FROM Users WHERE Mobile = :Mobile`, { Mobile: req.authUser })
 		.then(function (rows) {
 			if (rows[0].Password === req.body.OPassword) {
-				query(`UPDATE users SET Password = :Password WHERE Mobile = :Mobile`, { Password: req.body.Password, Mobile: req.authUser })
+				query(`UPDATE Users SET Password = :Password WHERE Mobile = :Mobile`, { Password: req.body.Password, Mobile: req.authUser })
 					.then(function (rows) {
 						res.json(true, { status: "success", message: `Password succesfully updated` });
 					})

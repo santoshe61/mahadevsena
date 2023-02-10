@@ -7,7 +7,7 @@
         >
           <q-card-section>
             <q-avatar size="105px" class="absolute-center shadow-10">
-              <img src="/src/assets/logo.png" height="100px" width="100px" />
+              <img :src="logo" height="100px" width="100px" />
             </q-avatar>
           </q-card-section>
           <q-card-section>
@@ -20,7 +20,7 @@
               <q-input
                 filled
                 v-model="data.Mobile"
-                label="Username"
+                label="Username *"
                 lazy-rules
                 :rules="[$v.required, $v.mobile]"
                 maxlength="10"
@@ -30,7 +30,7 @@
                 type="password"
                 filled
                 v-model="data.Pass"
-                label="Password"
+                label="Password *"
                 lazy-rules
                 :rules="[$v.required, $v.text(4, 128)]"
                 maxlength="128"
@@ -59,7 +59,9 @@
 <script setup>
   import { ref } from "vue";
   import { validations as $v } from "bestwebs";
-  import useAuthStore from "./auth";
+import useAuthStore from "./auth";
+
+import logo from "src/assets/logo.png";
 
   const authStore = useAuthStore();
 

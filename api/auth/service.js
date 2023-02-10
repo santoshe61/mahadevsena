@@ -4,7 +4,7 @@ function login(req, res, next) {
 	// res.json(req.body.Pass);
 	// return;
 	// console.log(req)
-	query("SELECT * FROM users WHERE Mobile = ?", [req.body.Mobile])
+	query("SELECT * FROM Users WHERE Mobile = ?", [req.body.Mobile])
 		.then(async function (rows) {
 			// await await new Promise((res) => setTimeout(res, 3000));
 			let user = rows[0];
@@ -22,7 +22,7 @@ function login(req, res, next) {
 }
 
 function getReferer(req, res, next) {
-	query("SELECT Name, Mobile FROM users WHERE Mobile = ?", [req.params.referer])
+	query("SELECT Name, Mobile FROM Users WHERE Mobile = ?", [req.params.referer])
 		.then(function (rows) {
 			res.json(rows);
 		})
@@ -32,7 +32,7 @@ function getReferer(req, res, next) {
 }
 
 function add(req, res, next) {
-	query("INSERT INTO users (Mobile, Referer, Name, Email, Password) VALUES (?, ?, ?, ?, ?)", [req.body.Mobile, req.body.Referer, req.body.Name, req.body.Email, req.body.Password])
+	query("INSERT INTO Users (Mobile, Referer, Name, Email, Password) VALUES (?, ?, ?, ?, ?)", [req.body.Mobile, req.body.Referer, req.body.Name, req.body.Email, req.body.Password])
 		.then(function (rows) {
 			res.json(rows, { status: "success", message: "You have been registered succesfully, please login if required", redirect: "/login" });
 		})

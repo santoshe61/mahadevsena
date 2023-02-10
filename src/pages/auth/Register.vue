@@ -7,7 +7,7 @@
         >
           <q-card-section>
             <q-avatar size="105px" class="absolute-center shadow-10">
-              <img src="/src/assets/logo.png" height="100px" width="100px" />
+              <img :src="logo" height="100px" width="100px" />
             </q-avatar>
           </q-card-section>
           <q-card-section>
@@ -48,7 +48,7 @@
                 <q-input
                   filled
                   v-model="data.Name"
-                  label="Your Name"
+                  label="Your Name *"
                   lazy-rules
                   required
                   :rules="[$v.required, $v.text(1, 100)]"
@@ -56,11 +56,21 @@
                 <q-input
                   filled
                   v-model="data.Mobile"
-                  label="Your Mobile"
+                  label="Your Mobile *"
                   required
                   lazy-rules
                   :rules="[$v.required, $v.mobile]"
                   maxlength="10"
+                />
+                <q-input
+                  type="password"
+                  filled
+                  required
+                  v-model="data.Password"
+                  label="Password *"
+                  lazy-rules
+                  :rules="[$v.required, $v.text(4, 128)]"
+                  maxlength="128"
                 />
                 <q-input
                   filled
@@ -69,16 +79,6 @@
                   lazy-rules
                   :rules="[$v.email, $v.text(1, 100)]"
                   maxlength="100"
-                />
-                <q-input
-                  type="password"
-                  filled
-                  required
-                  v-model="data.Password"
-                  label="Password"
-                  lazy-rules
-                  :rules="[$v.required, $v.text(1, 128)]"
-                  maxlength="128"
                 />
               </template>
 
@@ -110,12 +110,15 @@
 <script setup>
   import { ref } from "vue";
   import { validations as $v, noty } from "bestwebs";
-  import useAuthStore from "./auth";
+import useAuthStore from "./auth";
+  import logo from "src/assets/logo.png";
 
   const authStore = useAuthStore();
   // fetchReferer
 
-  let data = ref({});
+let data = ref({
+    Email: "",
+  });
   let referer = ref({
     error: "Please enter your referer's mobile number, then click search icon",
   });

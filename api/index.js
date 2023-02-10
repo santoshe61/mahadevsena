@@ -20,6 +20,14 @@ app.use("/api/transaction", reqIntercepter(true), transactionRouter);
 app.use("/api/payout", reqIntercepter(true), payoutRouter);
 app.use("/api/profile", reqIntercepter(true), profileRouter);
 
-app.use(express.static("../dist/spa"));
+app.use("*", function (req, res) {
+	res.status(404).json({
+		body: null,
+		meta: {
+			status: "danger",
+			message: "Invalid API URL"
+		}
+	});
+});
 
 app.listen(process.env.PORT || 5000);
