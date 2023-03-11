@@ -25,6 +25,7 @@
                 bottom-slots
                 :rules="[$v.required, $v.mobile]"
                 maxlength="10"
+                @blur="$event => $event.target.value.length === 10 && fetchReferer($event)"
               >
                 <template v-slot:append>
                   <q-btn

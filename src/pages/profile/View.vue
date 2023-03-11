@@ -5,11 +5,14 @@
         class="my-card column justify-center align-center"
         style="max-width: 440px"
       >
-        <h6>Your Profile</h6>
+        <TitleBar />
         <q-markup-table flat bordered dense>
           <tbody>
             <tr v-for="(value, key) in profileStore.authUser">
-              <td>{{ key.replaceAll("_", " ") }}</td>
+              <td v-if="key == 'Referer'">
+                परिचयकर्ता
+              </td>
+              <td v-else>{{ key.replaceAll("_", " ") }}</td>
               <td v-if="key == 'Time'">
                 {{ new Date(value).toLocaleString() }}
               </td>
@@ -81,7 +84,8 @@
 <script setup>
   import { ref } from "vue";
   import { validations as $v, noty } from "bestwebs";
-  import useProfileStore from "./profile";
+import useProfileStore from "./profile";
+  import TitleBar from "@/layouts/TitleBar.vue";
 
   const data = ref({});
   const prompt = ref(false);

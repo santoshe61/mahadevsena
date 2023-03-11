@@ -13,12 +13,19 @@ function reqIntercepter(checkAuth) {
 				req: req.body
 			});
 		}
+		req.onlyAdmin = function () {
+			if (!req.isAdmin) {
+				throw res.json(null, { status: "danger", message: "Invalid request or you do not have access", redirect: "/login" });
+			}
+		}
+
 		if (checkAuth) {
 			const [Mobile, Password] = Buffer.from(req.get("Authorization"), 'base64').toString('utf-8').split(":");
 			// console.log(Mobile, Password, req.get("Authorization"));
-			query("SELECT Mobile, Password FROM Users WHERE Mobile = :Mobile", { Mobile }).then(([row]) => {
+			query("SELECT Mobile, Password, isAdmin FROM Users WHERE Mobile = :Mobile", { Mobile }).then(([row]) => {
 				if (row && (row?.Password == Password)) {
 					req.authUser = row.Mobile;
+					req.isAdmin = !!row.isAdmin;
 					next();
 				} else {
 					res.json(null, { status: "danger", message: "Please login first ...", redirect: "/login" })

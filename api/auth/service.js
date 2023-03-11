@@ -31,15 +31,15 @@ function getReferer(req, res, next) {
 		})
 }
 
-function add(req, res, next) {
-	query("INSERT INTO Users (Mobile, Referer, Name, Email, Password) VALUES (?, ?, ?, ?, ?)", [req.body.Mobile, req.body.Referer, req.body.Name, req.body.Email, req.body.Password])
-		.then(function (rows) {
-			res.json(rows, { status: "success", message: "You have been registered succesfully, please login if required", redirect: "/login" });
-		})
-		.catch(function (err) {
-			res.json(null, { status: "danger", message: err.message }, 404);
-		})
-}
+// function add(req, res, next) {
+// 	query("INSERT INTO Users (Mobile, Referer, Name, Email, Password) VALUES (?, ?, ?, ?, ?)", [req.body.Mobile, req.body.Referer, req.body.Name, req.body.Email, req.body.Password])
+// 		.then(function (rows) {
+// 			res.json(rows, { status: "success", message: "You have been registered succesfully, please login if required", redirect: "/login" });
+// 		})
+// 		.catch(function (err) {
+// 			res.json(null, { status: "danger", message: err.message }, 404);
+// 		})
+// }
 
 function register(req, res, next) {
 	query("CALL insertUser(:Mobile, :Referer, :Name, :Email, :Account_IFSC, :Account_Number, :Account_Name, :Account_UPI, :PAN, :AADHAR, :Password);", { ...req.body, Account_IFSC: "", Account_Number: "", Account_Name: "", Account_UPI: "", PAN: "", AADHAR: "" })

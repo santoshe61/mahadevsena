@@ -4,7 +4,7 @@
       <q-header class="q-header row q-pa-lg" elevated>
 		  <h6 class="q-px-md q-my-sm">Mahadev Sena | महादेव सेना</h6>
 			<q-space />
-			<q-btn to="/login" rounded>जुड़ने के लिये यहाँ क्लिक करे</q-btn>
+			<q-btn to="/register" rounded>जुड़ने के लिये यहाँ क्लिक करे</q-btn>
       </q-header>
 
 
@@ -15,9 +15,9 @@
 			<source :src="item.media" type="video/mp4">
 			Your browser does not support the video tag.
 		</video>
-		<img v-else class="card-img" :src="item.media" />
+		<img v-else loading="lazy" class="card-img" :src="item.media" />
         <q-card-section>
-          <div class="text-h6 q-mb-xs">{{ item.title }}</div>
+          <div class="text-h6 q-mb-xs" v-html="item.title"></div>
         </q-card-section>
       </q-card>
     </div>
@@ -37,65 +37,18 @@ const items = ref([
   { title: "महादेव सेना में आपका स्वागत है", media: "/logo.png" },
   { title: "Letter from श्री 1008 पार्श्वनाथ दिगम्बर जैन अतिशय क्षेत्र ", media: "digambar-jain-letter.jpeg" },
   { title: "Letter from Mr. Ramdas Athawale", media: "ramdas-athavle-letter.jpeg" },
+  { title: "Group", media: "group.jpeg" },
+  { title: "Sh. Chirag Paswan,<br>Member of Parliament", media: "chirag-paswan.jpeg" },
+  { title: "Sh. Vineet Vohra<br>BJP Councellor, Paschim Vihar", media: "ra.jpeg" },
+  { title: "Group 2", media: "elebrations.jpeg" },
   { title: "Introductory video clip", media: "/intro.mp4", isVideo: true },
 ]);
-const conversations = [
-  {
-    id: 1,
-    person: 'Razvan Stoenescu',
-    avatar: 'https://cdn.quasar.dev/team/razvan_stoenescu.jpeg',
-    caption: 'I\'m working on Quasar!',
-    time: '15:00',
-    sent: true
-  },
-  {
-    id: 2,
-    person: 'Dan Popescu',
-    avatar: 'https://cdn.quasar.dev/team/dan_popescu.jpg',
-    caption: 'I\'m working on Quasar!',
-    time: '16:00',
-    sent: true
-  },
-  {
-    id: 3,
-    person: 'Jeff Galbraith',
-    avatar: 'https://cdn.quasar.dev/team/jeff_galbraith.jpg',
-    caption: 'I\'m working on Quasar!',
-    time: '18:00',
-    sent: true
-  },
-  {
-	  id: 4,
-	  person: 'Allan Gaunt',
-	  avatar: 'https://cdn.quasar.dev/team/allan_gaunt.png',
-	  caption: 'I\'m working on Quasar!',
-    time: '17:00',
-    sent: true
-  }
-]
 
 const $q = useQuasar()
-
-const leftDrawerOpen = ref(false)
-const search = ref('')
-const message = ref('')
-const currentConversationIndex = ref(0)
-
-const currentConversation = computed(() => {
-  return conversations[ currentConversationIndex.value ]
-})
 
 const style = computed(() => ({
   height: $q.screen.height + 'px'
 }))
-
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
-
-function setCurrentConversation (index) {
-  currentConversationIndex.value = index
-}
 
 </script>
 

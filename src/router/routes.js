@@ -37,12 +37,22 @@ const routes = [
         path: "/app",
         alias: "dashboard",
         meta: {
-          title: "Home",
+          title: "मुख्य पेज",
           caption: "Home",
           icon: "home",
           isAdmin: false
         },
         component: () => import("pages/IndexPage.vue"),
+      },
+      {
+        path: "/user/direct",
+        meta: {
+          title: "परिचायक",
+          caption: "List",
+          icon: "list",
+          isAdmin: false
+        },
+        component: () => import("pages/user/Direct.vue"),
       },
       {
         path: "/user/add/:mobile?",
@@ -68,7 +78,7 @@ const routes = [
       {
         path: "/transaction/view",
         meta: {
-          title: "View Points Transactions",
+          title: "View point Transactions",
           caption: "अंक लेनदेन देखें",
           isAdmin: true,
           icon: "format_list_numbered",
@@ -78,8 +88,8 @@ const routes = [
       {
         path: "/payouts/add",
         meta: {
-          title: "Add Payout request",
-          caption: "पेआउट अनुरोध जोड़ें",
+          title: "Add Sena point request",
+          caption: "पॉइंट अनुरोध जोड़ें",
           isAdmin: true,
           icon: "playlist_add",
         },
@@ -88,8 +98,8 @@ const routes = [
       {
         path: "/payouts/request/view",
         meta: {
-          title: "View Payout Requests",
-          caption: "पेआउट अनुरोध देखें",
+          title: "View Sena point requests",
+          caption: "पॉइंट अनुरोध देखें",
           isAdmin: true,
           icon: "playlist_play",
         },
@@ -98,8 +108,8 @@ const routes = [
       {
         path: "/payouts/paid/view",
         meta: {
-          title: "View released Payouts",
-          caption: "जारी किए गए पेआउट देखें",
+          title: "View released points",
+          caption: "जारी किए गए पॉइंट देखें",
           isAdmin: true,
           icon: "playlist_add_check",
         },
@@ -109,7 +119,7 @@ const routes = [
       {
         path: "/profile",
         meta: {
-          title: "Profile",
+          title: "प्रोफाइल ",
           caption: "View/Update Profile",
           isAdmin: false,
           icon: "person",
@@ -119,7 +129,7 @@ const routes = [
           {
             path: "",
             meta: {
-              title: "Profile",
+              title: "प्रोफाइल ",
               caption: "View/Update Profile",
               isAdmin: false,
               icon: "person",

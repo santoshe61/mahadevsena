@@ -27,6 +27,21 @@ const useUserStore = defineStore("user", {
 					return res;
 				});
 		},
+		fetchDirect({ page = 1, filter = "", Mobile = "", pagelength }) {
+			return http
+				.get(userAPI + "/direct", {
+					query: {
+						page,
+						filter,
+						pagelength
+					},
+				})
+				.then(res => {
+					this.users = res.body;
+					this.count = res.meta.count;
+					return res;
+				});
+		},
 		addUser(data) {
 			return http
 				.post(userAPI, data)

@@ -14,7 +14,7 @@
               >
                 <div class="row">
                   <div class="col-10">
-                    <div class="text-h6">Team Size</div>
+                    <div class="text-h6">Sena Sankhya</div>
                     <div class="text-h5">{{ profileStore.dashboard.Team }}</div>
                   </div>
                   <div class="col-2">
@@ -35,7 +35,7 @@
               >
                 <div class="row">
                   <div class="col-10">
-                    <div class="text-h6">Direct</div>
+                    <div class="text-h6">Bharti Parichay</div>
                     <div class="text-h5">
                       {{ profileStore.dashboard.Count }}
                     </div>
@@ -55,13 +55,13 @@
               >
                 <div class="row">
                   <div class="col-10">
-                    <div class="text-h6">Wallet Points</div>
+                    <div class="text-h6">सेना पॉइंट्स</div>
                     <div class="text-h5">
-                      $ {{ profileStore.dashboard.Balance }}
+                      {{ profileStore.dashboard.Balance }} points
                     </div>
                   </div>
                   <div class="col-2">
-                    <q-icon size="62px" name="savings" />
+                    <q-icon size="62px" name="account_balance_wallet" />
                   </div>
                 </div>
               </q-card-section>

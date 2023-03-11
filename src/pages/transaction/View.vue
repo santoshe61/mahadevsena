@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <q-table
-      title="View Transactions"
+      :title="`${$route.meta.title} ( ${$route.meta.caption} )`"
       :rows="transactionStore.transactions"
       :columns="columns"
       :filter="filter"
@@ -50,7 +50,7 @@ import useTransactionStore from "./transaction";
     sortBy: "desc",
     descending: false,
     page: 1,
-    rowsPerPage: 10,
+    rowsPerPage: 20,
     rowsNumber: transactionStore.count,
   });
   // const cnsl = ref(console);

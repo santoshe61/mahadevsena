@@ -2,7 +2,7 @@
   <q-form @submit.prevent.stop="onSubmit" @reset="onReset" class="q-pa-md">
     <q-card class="my-card">
       <q-card-section>
-        <h6>Add Payout Request</h6>
+        <TitleBar />
         <div class="row q-my-xs q-gutter-lg">
           <q-input
             outlined
@@ -64,7 +64,8 @@
   import { ref, watch } from "vue";
   import { validations as $v, noty } from "bestwebs";
   import usePayoutStore from "./payout";
-  import useUserStore from "../user/user.js";
+import useUserStore from "../user/user.js";
+  import TitleBar from "@/layouts/TitleBar.vue";
 
   const payoutStore = usePayoutStore();
   const userStore = useUserStore();

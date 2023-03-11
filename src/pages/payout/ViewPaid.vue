@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <q-table
-      title="View Paid Payouts"
+      :title="`${$route.meta.title} ( ${$route.meta.caption} )`"
       :rows="payoutStore.payouts"
       :columns="columns"
       :filter="filter"
@@ -149,7 +149,7 @@
     sortBy: "desc",
     descending: false,
     page: 1,
-    rowsPerPage: 5,
+    rowsPerPage: 20,
     rowsNumber: payoutStore.count,
   });
   const visibleColumns = ref([

@@ -2,9 +2,7 @@
   <q-form @submit.prevent.stop="onSubmit" @reset="onReset" class="q-pa-md">
     <q-card class="my-card">
       <q-card-section>
-        <h6>
-          Your Profile
-        </h6>
+        <TitleBar />
         <div class="row q-my-xs q-gutter-lg">
           <q-input
             outlined
@@ -120,7 +118,8 @@
 <script setup>
   import { ref } from "vue";
   import { validations as $v, noty, } from "bestwebs";
-  import useProfileStore from "./profile";
+import useProfileStore from "./profile";
+  import TitleBar from "@/layouts/TitleBar.vue";
 
   const profileStore = useProfileStore();
   const data = ref(profileStore.authUser);

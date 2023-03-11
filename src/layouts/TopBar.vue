@@ -17,12 +17,12 @@
         <q-btn-dropdown flat label="Profile">
           <div class="row no-wrap q-pa-md">
             <div class="column">
-              <div class="text-h6 text-center">Wallet Points</div>
+              <div class="text-h6 text-center">Sena Points</div>
               <h4 class="text-center q-my-sm">{{ user.Balance }}</h4>
               <q-btn
                 class="q-mt-lg"
                 color="primary"
-                label="Request Payout"
+                label="Sena point request"
                 push
                 size="sm"
                 v-close-popup
@@ -55,7 +55,7 @@
     <q-dialog v-model="prompt" persistent>
       <q-card style="min-width: 350px">
         <q-card-section>
-          <div class="text-h6">Payout Request</div>
+          <div class="text-h6">Sena point request</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">

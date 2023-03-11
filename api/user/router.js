@@ -3,6 +3,9 @@ const service = require('./service.js');
 const router = express.Router();
 
 router
+	.get('/direct', service.getDirectList)
+
+router
 	.route('/')
 	.get(service.getUserList)
 	.post(service.addUser);

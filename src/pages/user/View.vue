@@ -120,7 +120,7 @@
     sortBy: "desc",
     descending: false,
     page: 1,
-    rowsPerPage: 5,
+    rowsPerPage: 20,
     rowsNumber: userStore.count,
   });
   // const cnsl = ref(console);
@@ -128,8 +128,9 @@
   const columns = ref([]);
   const visibleColumns = ref([
     "Mobile",
-    "Referer",
     "Name",
+    "Referer",
+    "Referer_Name",
     "Email",
     "Balance",
     "Time",
@@ -153,6 +154,10 @@
           };
           if (key == "Time") {
             column.format = (val) => new Date(val).toLocaleString();
+          } else if (key == "Referer") {
+            column.label = "परिचयकर्ता";
+          } else if (key == "Referer_Name") {
+            column.label = "परिचयकर्ता नाम";
           }
           return column;
         });

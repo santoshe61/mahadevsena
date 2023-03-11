@@ -1,8 +1,9 @@
 const { query } = require('../utils/db.js');
 
 function getPayoutList(req, res, next) {
+	req.onlyAdmin();
 	let pagelength = parseInt(req.query.pagelength) || 100;
-	let start = ((req.query.page || 1) - 1) * 2;
+	let start = ((req.query.page || 1) - 1) * pagelength;
 	let sql = "";
 	let filter = "";
 	// console.log(req.query);
@@ -36,6 +37,7 @@ function getPayoutList(req, res, next) {
 }
 
 function processPayout(req, res, next) {
+	req.onlyAdmin();
 	query("UPDATE Payouts SET Paid_Amount = :Paid_Amount, Paid_Details = :Paid_Details, Status = -2 WHERE Payout_ID = :Payout_ID", {
 		Paid_Amount: req.body.Paid_Amount,
 		Paid_Details: req.body.Paid_Details,
@@ -49,6 +51,7 @@ function processPayout(req, res, next) {
 }
 
 function addPayout(req, res, next) {
+	req.onlyAdmin();
 	query("INSERT INTO Payouts (Mobile, Request_Amount, Request_Details) VALUES (:Mobile, :Request_Amount, :Request_Details)", req.body)
 		.then(function (rows) {
 			res.json(rows, { status: "success", message: `Payout for ${req.body.Mobile} added succesfully`, redirect: "/" }, 200);

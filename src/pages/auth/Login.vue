@@ -38,7 +38,7 @@
 
               <div class="flex row">
                 <q-btn
-                  label="Click here to Register"
+                  label="अपना फॉर्म भरने के लिए यहाँ क्लिक करें"
                   no-caps
                   to="/register"
                   type="button"

@@ -88,18 +88,18 @@ BEGIN
 		SELECT
 			L1.Mobile , L2.Mobile, L3.Mobile, L4.Mobile, L4.Referer INTO @Level1, @Level2, @Level3, @Level4, @Level5
 		FROM
-			users L1
-			LEFT JOIN users L2 ON L2.Mobile = L1.Referer
-			LEFT JOIN users L3 ON L3.Mobile = L2.Referer
-			LEFT JOIN users L4 ON L4.Mobile = L3.Referer
+			Users L1
+			LEFT JOIN Users L2 ON L2.Mobile = L1.Referer
+			LEFT JOIN Users L3 ON L3.Mobile = L2.Referer
+			LEFT JOIN Users L4 ON L4.Mobile = L3.Referer
 			WHERE L1.Mobile = _Referer;
 
 		INSERT INTO Transactions (Mobile, Amount, Joinee) VALUES
 			(@Level1, 30, _Mobile),
-			(@Level2, 25, _Mobile),
+			(@Level2, 20, _Mobile),
 			(@Level3, 20, _Mobile),
 			(@Level4, 15, _Mobile),
-			(@Level5, 10, _Mobile);
+			(@Level5, 15, _Mobile);
 
 		UPDATE Users SET Balance = Balance + 30 WHERE Mobile = @Level1;
 		UPDATE Users SET Balance = Balance + 25 WHERE Mobile = @Level2;
